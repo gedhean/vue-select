@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="mt-2">
-    <vue-single-select
+    <!-- <vue-single-select
       v-model="thread"
       :options="threads"
       :required="true"
@@ -8,15 +8,40 @@
       :getOptionDescription="getCustomDescription"
       option-key="id"
       name="dude"
-    ></vue-single-select>
+    ></vue-single-select> -->
+
     <hr>
-    <g-select 
-        v-model="thread2" 
-        :options="threads"
-        option-label="a_title"
-        option-key="id"
-        placeholder="Query select..."
-        name="deedee"
+    <g-select
+      v-model="thread"
+      :options="threads"
+      option-label="a_title"
+      option-key="id"
+      placeholder="Query select2..."
+      name="deedee2"
+    ></g-select>
+
+    <hr>
+    <g-select
+      v-model="thread2"
+      :options="threads"
+      option-label="a_title"
+      option-key="id"
+      placeholder="Query select..."
+      name="deedee"
+      :always-open="true"
+      displayMode="thumb"
+    ></g-select>
+
+    <hr>
+    <g-select
+      v-model="thread3"
+      :options="threads"
+      option-label="a_title"
+      option-key="id"
+      placeholder="Query select..."
+      name="deedee"
+      :always-open="true"
+      displayMode="bullet"
     ></g-select>
   </div>
 </template>
@@ -27,6 +52,7 @@
 // import VueTaggablepleSelect from 'vue-simple-taggable-select';
 import VueSingleSelect from "./VueSingleSelect.vue";
 import GSelect from "./GSelect.vue";
+
 export default {
   name: "app",
   created() {
@@ -82,29 +108,27 @@ export default {
       myThreads: [],
       thread: "",
       thread2: "",
+      thread3: "",
       threads: [
         { id: 1, a_title: "baz bar" },
         { id: 2, a_title: "foo bar" },
-        {
-          id: 3,
-          a_title: "Eos rerum veniam quia mollitia"
-        },
-        { id: 4, a_title: "Robs Thread" },
+        { id: 3, a_title: "Eos rerum " },
+        { id: 4, a_title: "Thread" },
         { id: 5, a_title: "test" },
-        { id: 6, a_title: "goose" },
+        { id: 6, a_title: "goose weed" },
         { id: 7, a_title: "loose goose" },
-        { id: 8, a_title: "geese" },
-        { id: 9, a_title: "moose" },
-        { id: 10, a_title: "test thread updated" },
-        {
-          id: 11,
-          a_title:
-            "Distinctio quo praesentium quis commodi praesentium excepturi."
-        },
-        { id: 12, a_title: "changed new thread" },
-        { id: 13, a_title: "fred" },
-        { id: 14, a_title: "barney" },
-        { id: 15, a_title: "fredn and barney" }
+        { id: 8, a_title: "geese" }
+        // { id: 9, a_title: "moose" },
+        // { id: 10, a_title: "test thread" },
+        // {
+        //   id: 11,
+        //   a_title:
+        //     "Distinctio quo praesentium quis commodi praesentium excepturi."
+        // },
+        // { id: 12, a_title: "changed new thread" },
+        // { id: 13, a_title: "fred" },
+        // { id: 14, a_title: "barney" },
+        // { id: 15, a_title: "fredn and barney" }
       ]
     };
   }

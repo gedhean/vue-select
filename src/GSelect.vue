@@ -1,7 +1,7 @@
 <template>
 	<div class="g-select-root">
     <div class="g-select-wrapper">
-      <div class="g-select-inline-block">
+      <div class="g-select-inline-block" v-if="!alwaysOpen">
         <input 
           type="text" 
           class="g-select-search-ipunt" 
@@ -15,12 +15,25 @@
       </div>
       <ul v-if="dropDownOpen" :style="{'max-height': maxHeight}">
         <li 
-          v-for="(item, idx) in options" 
+          v-for="(option, idx) in options" 
           :key="idx"
           @mouseover="setPointerIndex(idx)"
           @click.prevent="setOption()"
-        >
-          {{ item[optionLabel] }}
+          :class="{selected: option == selectedOption, compact: displayMode == 'bullet'}"
+        > 
+          <g-option-thumb 
+            v-if="displayMode == 'thumb'" 
+            :label="getOptionDescription(option)"
+            imageSrc="https://cdn.shopify.com/s/files/1/1450/2448/products/honey_yellow_c60c4561-87f5-4851-b6f3-f8cda9cd602a_800x.jpg?v=1553184933"
+          ></g-option-thumb>
+          <g-option-bullet 
+            v-else-if="displayMode == 'bullet'" 
+            color="#78d241"
+          ></g-option-bullet>
+          <slot 
+            v-else name="option" 
+            v-bind="{option,idx}"
+          >{{ getOptionDescription(option) }}</slot>
         </li>
       </ul>
       <div v-if="selectedOption">
@@ -30,7 +43,11 @@
 	</div>
 </template>
 <script>
+import GOptionThumb from "./GOptionThumb.vue"
+import GOptionBullet from "./GOptionBullet.vue"
+
 export default {
+
   props: {
     value: {
       required: true
@@ -60,9 +77,19 @@ export default {
       required: false,
       default: () => null
     },
+    displayMode: {
+      validator: (value) => ['text','bullet', 'thumb'].includes(value),
+      default: () => 'text',
+      required: false
+    },
     maxHeight: {
       type: String,
       default: () => "220px",
+      required: false
+    },
+    alwaysOpen: {
+      type: Boolean,
+      default: false,
       required: false
     },
     getOptionDescription: {
@@ -97,6 +124,9 @@ export default {
   },
   mounted() {
     document.addEventListener("click", this.handleClickOutside)
+    document.addEventListener("keyup", this.handleClickOutside)
+
+    this.dropDownOpen = this.alwaysOpen
 
     if (this.value && this.options.includes(this.value)) {
       this.selectedOption = this.value
@@ -104,6 +134,7 @@ export default {
   },
   destroyed() {
     document.removeEventListener("click", this.handleClickOutside)
+    document.removeEventListener("keyup", this.handleClickOutside)
   },
   data() {
     return {
@@ -130,23 +161,29 @@ export default {
     handleClickOutside(e) {
       if (this.$el.contains(e.target)) return;
 
-      this.dropDownOpen = false
+      this.closeDropDown()
     },
     openDropDown(e) {
+      if (this.alwaysOpen) return;
       this.dropDownOpen = true
     },
     closeDropDown(e) {
+      if (this.alwaysOpen) return;
       this.dropDownOpen = false
     },
     setOption(e) {
       this.selectedOption = this.options[this.pointer]
-      this.dropDownOpen = false
+      this.closeDropDown()
     },
     closeOut(e) {
       console.log(e)
       this.closeDropDown()
       this.selectedOption = null
     }
+  },
+  components: {
+    GOptionThumb,
+    GOptionBullet
   }
 };
 </script>
@@ -164,14 +201,25 @@ ul {
 
 ul > li {
   list-style: none;
+  display: inline-block;
+  width: 160px;
+  max-height: 100px
 }
 
 li {
-  padding: 0.5em 0.75em;
+  padding: 0.4em 0.75em;
 }
 
 li:hover {
   background-color: #999;
   color: #FFF;
+}
+
+.selected {
+  border: #999 1px solid;
+}
+
+.compact {
+  width: auto;
 }
 </style>

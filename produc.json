@@ -1,0 +1,80 @@
+{
+  "material": [
+    {
+      "label": "Please select a Device",
+      "identifiers": [
+        { "label": "IPhone 6 Plus", "value": "standard-iphone6plus" },
+        { "label": "IPhone 7 Plus", "value": "standard-iphone7plus" },
+        { "label": "IPhone 8 Plus", "value": "standard-iphone8plus" }
+      ]
+    },
+    {
+      "label": "Please select a Category",
+      "display_type": "image",
+      "items": [
+        {
+          "material": "standard",
+          "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+          "identifiers": [
+            "standard-iphone6plus",
+            "standard-iphone7plus",
+            "standard-iphone8plus"
+          ],
+          "composed": false,
+          "customization": {
+            "type": "text",
+            "properties": {
+              "max_length": 5,
+              "pattern_name": "Letter",
+              "pattern_regexp": "/[\\s[A-Za-z]]+/"
+            }
+          }
+        },
+        {
+          "material": "sticker",
+          "display_resource": "https://static-production.gocase.com.br/case_types/39/original/seletor-anti.jpg",
+          "identifiers": ["standard-iphone6plus", "standard-iphone7plus"],
+          "composed": true,
+          "components": [
+            {
+              "label": "Please select a Component",
+              "display_type": "color",
+              "items": [
+                {
+                  "material": "bumper",
+                  "display_resource": "#00ff00",
+                  "composed": false,
+                  "identifiers": [
+                    "standard-iphone6plus",
+                    "standard-iphone7plus"
+                  ]
+                },
+                {
+                  "material": "plate",
+                  "display_resource": "#ffffff",
+                  "composed": false,
+                  "identifiers": [
+                    "standard-iphone6plus",
+                    "standard-iphone7plus"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Please select an addon",
+      "items": []
+    }
+  ],
+  "customization": {
+    "type": "text",
+    "properties": {
+      "max_length": 4,
+      "pattern_name": "Whitespace, All accent letters",
+      "pattern_regexp": "/[\\s[:alpha:]]+/"
+    }
+  }
+}
