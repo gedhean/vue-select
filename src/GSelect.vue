@@ -13,7 +13,7 @@
           :value="selectedOption ? getOptionDescription(selectedOption) : null"
         >
       </div>
-      <ul v-if="dropDownOpen">
+      <ul v-if="dropDownOpen" :style="{'max-height': maxHeight}">
         <li 
           v-for="(item, idx) in options" 
           :key="idx"
@@ -59,6 +59,11 @@ export default {
       type: String,
       required: false,
       default: () => null
+    },
+    maxHeight: {
+      type: String,
+      default: () => "220px",
+      required: false
     },
     getOptionDescription: {
       type: Function,
@@ -153,11 +158,20 @@ input {
 }
 
 ul {
-  margin-left: 2px;
+  padding-left: 0px;
+  overflow: auto;
 }
 
 ul > li {
   list-style: none;
 }
-</style>
 
+li {
+  padding: 0.5em 0.75em;
+}
+
+li:hover {
+  background-color: #999;
+  color: #FFF;
+}
+</style>
