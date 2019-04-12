@@ -1,136 +1,97 @@
 <template>
   <div id="app" class="mt-2">
-    <!-- <vue-single-select
-      v-model="thread"
-      :options="threads"
-      :required="true"
-      option-label="a_title"
-      :getOptionDescription="getCustomDescription"
-      option-key="id"
-      name="dude"
-    ></vue-single-select> -->
-
+    <div>
+      <label>{{ devices.label }}</label>
+    </div>
+    <select v-model="selectedDevice" name="device">
+      <option value disabled></option>
+      <option
+        v-for="(opt, idx) in devices.identifiers"
+        :value="opt.value"
+        :key="idx"
+      >{{ opt.label }}</option>
+    </select>
     <hr>
-    <g-select
-      v-model="thread"
-      :options="threads"
-      option-label="a_title"
-      option-key="id"
-      placeholder="Query select2..."
-      name="deedee2"
-    ></g-select>
-
-    <hr>
-    <g-select
-      v-model="thread2"
-      :options="threads"
-      option-label="a_title"
-      option-key="id"
-      placeholder="Query select..."
-      name="deedee"
-      :always-open="true"
-      displayMode="thumb"
-    ></g-select>
-
-    <hr>
-    <g-select
-      v-model="thread3"
-      :options="threads"
-      option-label="a_title"
-      option-key="id"
-      placeholder="Query select..."
-      name="deedee"
-      :always-open="true"
-      displayMode="bullet"
-    ></g-select>
+    <template v-if="hasCategories && selectedDevice">
+      <g-select
+        v-model="selectedCategory"
+        :options="optionsForDevice"
+        option-label="label"
+        name="category"
+        :display-mode="categories.display_type"
+        :alwaysOpen="shouldAlwaysOpen"
+      ></g-select>
+    </template>
+    <!-- <template v-for="(subSel, idx) in subSelects">
+      <div :key="idx">
+        <label>{{ subSel.query_label}}</label>
+        <g-select 
+          v-model="subSel.selectedSubCategory" 
+          :options="optionsForCategory(subSel.items)" 
+          option-label="label"
+          option-value="value"
+          :display-mode="subSel.display_type"
+          :alwaysOpen="true"
+        ></g-select>
+      </div>
+    </template> -->
   </div>
 </template>
 <script>
 /* eslint-disable */
-
-// import "./../public/app.css";
-// import VueTaggablepleSelect from 'vue-simple-taggable-select';
 import VueSingleSelect from "./VueSingleSelect.vue";
 import GSelect from "./GSelect.vue";
+import product from "./product.json";
 
 export default {
   name: "app",
-  created() {
-    //this.numbers = _.range(20,40);
-    //this.thread = this.threads[1]
-  },
-  methods: {
-    getCustomDescription(opt) {
-      return opt.a_title;
-    },
-
-    addOption(opt) {
-      //this.myThreads.push(opt);
-      //this.threads.push(opt);
-      this.fruits.push(opt);
-    },
-    zed(opt) {
-      return opt + " fruit";
-    }
-  },
-  mounted() {
-    //let r = _.sample(this.fruits)
-    //this.fruit = 'peach'
-    setTimeout(() => {
-      /* let threads = _.sampleSize(this.threads, 2);
-       * this.myThreads = [this.threads[0]];*/
-    }, 2000);
-    setInterval(() => {
-      //      this.fruit = _.sample(this.fruits)
-      //this.myThreads = [];
-    }, 1000);
-  },
   components: {
     VueSingleSelect,
     GSelect
   },
   data() {
     return {
-      nums: [],
-      numbers: [],
-      fruit: "apple",
-      veggies: [],
-      fruits: [
-        "apple",
-        "cherry",
-        "pear",
-        "peach",
-        "banana",
-        "orange",
-        "plum",
-        "grape"
-      ],
-      myThreads: [],
-      thread: "",
-      thread2: "",
-      thread3: "",
-      threads: [
-        { id: 1, a_title: "baz bar" },
-        { id: 2, a_title: "foo bar" },
-        { id: 3, a_title: "Eos rerum " },
-        { id: 4, a_title: "Thread" },
-        { id: 5, a_title: "test" },
-        { id: 6, a_title: "goose weed" },
-        { id: 7, a_title: "loose goose" },
-        { id: 8, a_title: "geese" }
-        // { id: 9, a_title: "moose" },
-        // { id: 10, a_title: "test thread" },
-        // {
-        //   id: 11,
-        //   a_title:
-        //     "Distinctio quo praesentium quis commodi praesentium excepturi."
-        // },
-        // { id: 12, a_title: "changed new thread" },
-        // { id: 13, a_title: "fred" },
-        // { id: 14, a_title: "barney" },
-        // { id: 15, a_title: "fredn and barney" }
-      ]
+      selectedDevice: null,
+      selectedCategory: null,
+      subSelects: [],
+      product
     };
+  },
+  computed: {
+    devices() {
+      return this.product.material[0];
+    },
+    categories() {
+      return this.product.material[1];
+    },
+    hasCategories() {
+      return this.optionsForDevice.length > 0;
+    },
+    shouldAlwaysOpen() {
+      return this.optionsForDevice.length <= 10;
+    },
+    optionsForDevice() {
+      if (!this.selectedDevice) return [];
+
+      return this.optionsForCategory(this.categories)
+    },
+  },
+  watch: {
+    selectedDevice(curr, prev) {
+      if (this.optionsForDevice.includes(this.selectedCategory)) return;
+
+      this.selectedCategory = null;
+    },
+    selectedCategory(curr, prev) {
+      // Treat composed options1
+    }
+  },
+  methods: {
+    optionsForCategory(category) {
+      return category.items.filter(cat =>
+        cat.identifiers.includes(this.selectedDevice)
+      );
+    }
   }
 };
 </script>

@@ -1,23 +1,23 @@
 {
   "material": [
     {
-      "label": "Please select a Device",
+      "query_label": "Please select a Device",
       "identifiers": [
         { "label": "IPhone 6 Plus", "value": "standard-iphone6plus" },
         { "label": "IPhone 7 Plus", "value": "standard-iphone7plus" },
-        { "label": "IPhone 8 Plus", "value": "standard-iphone8plus" }
+        { "label": "Hawei HUE", "value": "hawei-hue" }
       ]
     },
     {
-      "label": "Please select a Category",
+      "query_label": "Please select a Category",
       "display_type": "image",
       "items": [
         {
-          "material": "standard",
+          "label": "Standard", 
+          "value": "standard",
           "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
           "identifiers": [
             "standard-iphone6plus",
-            "standard-iphone7plus",
             "standard-iphone8plus"
           ],
           "composed": false,
@@ -31,17 +31,19 @@
           }
         },
         {
-          "material": "sticker",
+          "label": "Sticker", 
+          "value": "sticker",
           "display_resource": "https://static-production.gocase.com.br/case_types/39/original/seletor-anti.jpg",
           "identifiers": ["standard-iphone6plus", "standard-iphone7plus"],
           "composed": true,
           "components": [
             {
-              "label": "Please select a Component",
+              "query_label": "Please select a Component",
               "display_type": "color",
               "items": [
                 {
-                  "material": "bumper",
+                  "label": "Bumper", 
+                  "value": "bumper",
                   "display_resource": "#00ff00",
                   "composed": false,
                   "identifiers": [
@@ -50,7 +52,8 @@
                   ]
                 },
                 {
-                  "material": "plate",
+                  "label": "Plate", 
+                  "value": "plate",
                   "display_resource": "#ffffff",
                   "composed": false,
                   "identifiers": [
@@ -65,7 +68,7 @@
       ]
     },
     {
-      "label": "Please select an addon",
+      "query_label": "Please select an addon",
       "items": []
     }
   ],

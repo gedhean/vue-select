@@ -1,7 +1,7 @@
 <template>
 	<div class="g-select-root">
     <div class="g-select-wrapper">
-      <div class="g-select-inline-block" v-if="!alwaysOpen">
+      <div class="g-select-inline-block" v-if="true || !alwaysOpen">
         <input 
           type="text" 
           class="g-select-search-ipunt" 
@@ -22,13 +22,13 @@
           :class="{selected: option == selectedOption, compact: displayMode == 'bullet'}"
         > 
           <g-option-thumb 
-            v-if="displayMode == 'thumb'" 
+            v-if="displayMode == 'image'" 
             :label="getOptionDescription(option)"
-            imageSrc="https://cdn.shopify.com/s/files/1/1450/2448/products/honey_yellow_c60c4561-87f5-4851-b6f3-f8cda9cd602a_800x.jpg?v=1553184933"
+            :imageSrc="option.display_resource"
           ></g-option-thumb>
           <g-option-bullet 
-            v-else-if="displayMode == 'bullet'" 
-            color="#78d241"
+            v-else-if="displayMode == 'color'" 
+            :color="option.display_resource"
           ></g-option-bullet>
           <slot 
             v-else name="option" 
@@ -78,7 +78,7 @@ export default {
       default: () => null
     },
     displayMode: {
-      validator: (value) => ['text','bullet', 'thumb'].includes(value),
+      validator: (value) => ['text','color', 'image'].includes(value),
       default: () => 'text',
       required: false
     },
