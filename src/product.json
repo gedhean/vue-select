@@ -54,7 +54,7 @@
                 {
                   "label": "Plate", 
                   "value": "plate",
-                  "display_resource": "#ffffff",
+                  "display_resource": "#000",
                   "composed": false,
                   "identifiers": [
                     "standard-iphone6plus",

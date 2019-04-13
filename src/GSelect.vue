@@ -50,7 +50,7 @@ export default {
 
   props: {
     value: {
-      required: true
+      required: false
     },
     name: {
       type: String,
@@ -148,7 +148,7 @@ export default {
       this.selectedOption = curr
     },
     selectedOption(curr, prev) {
-      this.$emit("input", curr);
+      this.$emit("input", curr, prev);
     }
   },
   methods: {

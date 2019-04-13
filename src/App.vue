@@ -14,27 +14,27 @@
     <hr>
     <template v-if="hasCategories && selectedDevice">
       <g-select
-        v-model="selectedCategory"
         :options="optionsForDevice"
         option-label="label"
         name="category"
         :display-mode="categories.display_type"
         :alwaysOpen="shouldAlwaysOpen"
+        @input="updateCategories"
       ></g-select>
     </template>
-    <!-- <template v-for="(subSel, idx) in subSelects">
+    <template v-for="(subSel, idx) in subSelects">
       <div :key="idx">
         <label>{{ subSel.query_label}}</label>
         <g-select 
-          v-model="subSel.selectedSubCategory" 
-          :options="optionsForCategory(subSel.items)" 
+          :options="optionsForCategory(subSel)" 
           option-label="label"
           option-value="value"
           :display-mode="subSel.display_type"
           :alwaysOpen="true"
+          @input="updateCategories"
         ></g-select>
       </div>
-    </template> -->
+    </template>
   </div>
 </template>
 <script>
@@ -52,8 +52,7 @@ export default {
   data() {
     return {
       selectedDevice: null,
-      selectedCategory: null,
-      subSelects: [],
+      selectedCategories: [],
       product
     };
   },
@@ -73,17 +72,24 @@ export default {
     optionsForDevice() {
       if (!this.selectedDevice) return [];
 
-      return this.optionsForCategory(this.categories)
+      return this.optionsForCategory(this.categories);
     },
+    subSelects() {
+      return this.selectedCategories
+        .filter(cat => cat.composed)
+        .reduce((prev, curr) => prev.concat(curr.components), []);
+    }
   },
   watch: {
     selectedDevice(curr, prev) {
-      if (this.optionsForDevice.includes(this.selectedCategory)) return;
+      // if (this.optionsForDevice.includes(this.selectedCategories)) return;
 
-      this.selectedCategory = null;
+      this.selectedCategories = this.selectedCategories.filter(cat =>
+        this.optionsForDevice.includes(cat)
+      );
     },
-    selectedCategory(curr, prev) {
-      // Treat composed options1
+    selectedCategories(curr, prev) {
+      // Treat composed options
     }
   },
   methods: {
@@ -91,6 +97,15 @@ export default {
       return category.items.filter(cat =>
         cat.identifiers.includes(this.selectedDevice)
       );
+    },
+    updateCategories(cat, prevCat) {
+      if (this.selectedCategories.includes(cat)) return
+
+      this.selectedCategories.push(cat)
+      // Remove priviews selected Category
+      this.selectedCategories = this.selectedCategories.filter((categ) => categ !== prevCat)
+      console.log("Adding:", cat)
+      console.log("Removing:", prevCat)
     }
   }
 };
