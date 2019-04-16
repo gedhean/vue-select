@@ -1,0 +1,142 @@
+{
+  "product": [
+    {
+      "query_label": "Please select a Device",
+      "filters": [
+        {
+          "value": "blacktransparent-iphone6",
+          "display_type": "image",
+          "display_resources": [],
+          "label": "Samsung"
+        },
+        {
+          "value": "tabletcase-ipadpro105",
+          "display_type": "color",
+          "display_resources": [],
+          "label": "iPhone"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "value": "case-standard",
+          "filters": ["skin-iphone7plus", "colorcaseblack-galaxyj7pro"],
+          "composed": true,
+          "components": [
+            {
+              "query_label": "Please select a Category",
+              "items": [
+                {
+                  "value": "case-borderedrose",
+                  "filters": [
+                    "clutch-standard-13",
+                    "backpack-default-standard"
+                  ],
+                  "composed": false,
+                  "display_type": "color",
+                  "display_resources": [],
+                  "label": "Samsung"
+                },
+                {
+                  "value": "case-glittercasegold",
+                  "filters": ["casewallet-iphonex", "skin-iphonex"],
+                  "composed": false,
+                  "display_type": "image",
+                  "display_resources": [],
+                  "label": "iPhone"
+                }
+              ]
+            }
+          ],
+          "display_type": "image",
+          "display_resources": [],
+          "label": "Xiaomi"
+        },
+        {
+          "value": "sketchbook-sketchbooklarge",
+          "filters": ["skindouble-iphone7", "sketchbooksmall-rose"],
+          "composed": false,
+          "customization": {
+            "type": "text",
+            "properties": {
+              "max_length": 11,
+              "pattern_name": "Letter",
+              "pattern_regexp": "/[[A-Za-z]]+/"
+            }
+          },
+          "display_type": "image",
+          "display_resources": [],
+          "label": "Samsung"
+        }
+      ],
+      "query_label": "Please select a Category"
+    },
+    {
+      "query_label": "Please select an Addon",
+      "items": [
+        {
+          "query_label": "Please select a Category",
+          "items": [
+            {
+              "value": "case-royalwalletblackred",
+              "filters": ["powerbank-5000mahuniversal-rose"],
+              "composed": true,
+              "components": [
+                {
+                  "query_label": "Please select a Category",
+                  "items": [
+                    {
+                      "value": "headphone-rosegold",
+                      "filters": [
+                        "skinwhite-iphone6plus",
+                        "tabletcase-ipadpro105"
+                      ],
+                      "composed": false,
+                      "customization": {
+                        "type": "text",
+                        "properties": {
+                          "max_length": 11,
+                          "pattern_name": "Whitespace, Letter, Digit",
+                          "pattern_regexp": "/[\\s[A-Za-z][0-9]]+/"
+                        }
+                      },
+                      "display_type": "color",
+                      "display_resources": [],
+                      "label": "iPhone"
+                    }
+                  ]
+                }
+              ],
+              "customization": {
+                "type": "pattern",
+                "properties": {
+                  "font": "(NEW) SUGAR PLUMS"
+                }
+              },
+              "display_type": "color",
+              "display_resources": [],
+              "label": "Samsung"
+            },
+            {
+              "value": "case-acquafascino",
+              "filters": ["wallslim"],
+              "composed": false,
+              "display_type": "color",
+              "display_resources": [],
+              "label": "Huawei"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "customization": {
+    "type": "text",
+    "properties": {
+      "max_length": 11,
+      "pattern_name": "Whitespace, All accent letters",
+      "pattern_regexp": "/[\\s[:alpha:]]+/"
+    }
+  }
+}

@@ -132,6 +132,9 @@ export default {
       this.selectedOption = this.value
     }
   },
+  beforeDestroy() {
+    this.$emit('unselec', this.selectedOption)
+  },
   destroyed() {
     document.removeEventListener("click", this.handleClickOutside)
     document.removeEventListener("keyup", this.handleClickOutside)

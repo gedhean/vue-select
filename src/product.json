@@ -11,6 +11,7 @@
     {
       "query_label": "Please select a Category",
       "display_type": "image",
+      "composed": false,
       "items": [
         {
           "label": "Standard", 
@@ -55,6 +56,32 @@
                   "label": "Plate", 
                   "value": "plate",
                   "display_resource": "#000",
+                  "composed": false,
+                  "identifiers": [
+                    "standard-iphone6plus",
+                    "standard-iphone7plus"
+                  ]
+                }
+              ]
+            },
+            {
+              "query_label": "Please select a Component",
+              "display_type": "color",
+              "items": [
+                {
+                  "label": "Rapaz", 
+                  "value": "bumper",
+                  "display_resource": "#666",
+                  "composed": false,
+                  "identifiers": [
+                    "standard-iphone6plus",
+                    "standard-iphone7plus"
+                  ]
+                },
+                {
+                  "label": "Cool name", 
+                  "value": "plate",
+                  "display_resource": "#eee",
                   "composed": false,
                   "identifiers": [
                     "standard-iphone6plus",

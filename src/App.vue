@@ -20,18 +20,21 @@
         :display-mode="categories.display_type"
         :alwaysOpen="shouldAlwaysOpen"
         @input="updateCategories"
+        @unselect="unselectCategory"
       ></g-select>
     </template>
     <template v-for="(subSel, idx) in subSelects">
       <div :key="idx">
         <label>{{ subSel.query_label}}</label>
-        <g-select 
+        <g-select
+          ref="catSelect" 
           :options="optionsForCategory(subSel)" 
           option-label="label"
           option-value="value"
           :display-mode="subSel.display_type"
           :alwaysOpen="true"
           @input="updateCategories"
+          @unselect="unselectCategory"
         ></g-select>
       </div>
     </template>
@@ -90,6 +93,10 @@ export default {
     },
     selectedCategories(curr, prev) {
       // Treat composed options
+    },
+    subSelects(curr, prev) {
+      // console.log('prev subSelect:', prev)
+      // console.log('curr subSelect:', curr)
     }
   },
   methods: {
@@ -102,10 +109,13 @@ export default {
       if (this.selectedCategories.includes(cat)) return
 
       this.selectedCategories.push(cat)
-      // Remove priviews selected Category
-      this.selectedCategories = this.selectedCategories.filter((categ) => categ !== prevCat)
       console.log("Adding:", cat)
-      console.log("Removing:", prevCat)
+      this.unselectCategory(prevCat)
+    },
+    unselectCategory(category) {
+      // Remove priview selected Category
+      this.selectedCategories = this.selectedCategories.filter((categ) => categ !== category)
+      console.log("Removing:", category)
     }
   }
 };
