@@ -19,19 +19,20 @@
           :key="idx"
           @mouseover="setPointerIndex(idx)"
           @click.prevent="setOption()"
-          :class="{selected: option == selectedOption, compact: displayMode == 'bullet'}"
+          :class="{selected: option == selectedOption, compact: option.display_type == 'bullet'}"
         > 
           <g-option-thumb 
-            v-if="displayMode == 'image'" 
+            v-if="option.display_type == 'image'" 
             :label="getOptionDescription(option)"
             :imageSrc="option.display_resource"
           ></g-option-thumb>
           <g-option-bullet 
-            v-else-if="displayMode == 'color'" 
+            v-else-if="option.display_type == 'color'" 
             :color="option.display_resource"
           ></g-option-bullet>
           <slot 
-            v-else name="option" 
+            v-else 
+            name="option" 
             v-bind="{option,idx}"
           >{{ getOptionDescription(option) }}</slot>
         </li>
@@ -77,11 +78,11 @@ export default {
       required: false,
       default: () => null
     },
-    displayMode: {
-      validator: (value) => ['text','color', 'image'].includes(value),
-      default: () => 'text',
-      required: false
-    },
+    // displayMode: {
+    //   validator: (value) => ['text','color', 'image'].includes(value),
+    //   default: () => 'text',
+    //   required: false
+    // },
     maxHeight: {
       type: String,
       default: () => "220px",
@@ -133,7 +134,8 @@ export default {
     }
   },
   beforeDestroy() {
-    this.$emit('unselec', this.selectedOption)
+    this.$emit('unselect', this.selectedOption)
+    console.log('emitting unselect: ', this.selectedOption);
   },
   destroyed() {
     document.removeEventListener("click", this.handleClickOutside)

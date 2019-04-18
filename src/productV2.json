@@ -4,139 +4,163 @@
       "query_label": "Please select a Device",
       "filters": [
         {
-          "value": "blacktransparent-iphone6",
-          "display_type": "image",
-          "display_resources": [],
-          "label": "Samsung"
+          "device": "standard",
+          "labels": "Standard - EN"
         },
         {
-          "value": "tabletcase-ipadpro105",
-          "display_type": "color",
-          "display_resources": [],
-          "label": "iPhone"
+          "device": "shiny",
+          "labels": "Shiny - EN"
+        },
+        {
+          "device": "black",
+          "labels": "Black - EN"
+        },
+        {
+          "device": "huebr",
+          "labels": "HUE - BR"
+        },
+        {
+          "device": "rose",
+          "labels": "Rose - BR"
         }
       ]
     },
     {
+      "query_label": "Please select a Category",
       "items": [
         {
-          "value": "case-standard",
-          "filters": ["skin-iphone7plus", "colorcaseblack-galaxyj7pro"],
+          "label": "Pocket Default",
+          "value": "pocket-default",
+          "display_type": "image",
+          "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+          "filters": ["shiny", "black", "rose", "standard", "huebr"],
           "composed": true,
           "components": [
             {
               "query_label": "Please select a Category",
               "items": [
                 {
-                  "value": "case-borderedrose",
-                  "filters": [
-                    "clutch-standard-13",
-                    "backpack-default-standard"
-                  ],
-                  "composed": false,
-                  "display_type": "color",
-                  "display_resources": [],
-                  "label": "Samsung"
-                },
-                {
-                  "value": "case-glittercasegold",
-                  "filters": ["casewallet-iphonex", "skin-iphonex"],
+                  "slugs": {
+                    "rose": "pocketrose",
+                    "black": "pocketblack",
+                    "shiny": "pocketshiny",
+                    "standard": "pocketstandard"
+                  },
+                  "filters": ["shiny", "rose", "standard", "black"],
                   "composed": false,
                   "display_type": "image",
-                  "display_resources": [],
-                  "label": "iPhone"
-                }
-              ]
-            }
-          ],
-          "display_type": "image",
-          "display_resources": [],
-          "label": "Xiaomi"
-        },
-        {
-          "value": "sketchbook-sketchbooklarge",
-          "filters": ["skindouble-iphone7", "sketchbooksmall-rose"],
-          "composed": false,
-          "customization": {
-            "type": "text",
-            "properties": {
-              "max_length": 11,
-              "pattern_name": "Letter",
-              "pattern_regexp": "/[[A-Za-z]]+/"
-            }
-          },
-          "display_type": "image",
-          "display_resources": [],
-          "label": "Samsung"
-        }
-      ],
-      "query_label": "Please select a Category"
-    },
-    {
-      "query_label": "Please select an Addon",
-      "items": [
-        {
-          "query_label": "Please select a Category",
-          "items": [
-            {
-              "value": "case-royalwalletblackred",
-              "filters": ["powerbank-5000mahuniversal-rose"],
-              "composed": true,
-              "components": [
+                  "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+                  "label": "Pocket Default"
+                },
                 {
-                  "query_label": "Please select a Category",
-                  "items": [
+                  "slugs": {
+                    "rose": "hawpocketrose",
+                    "black": "hawpocketblack",
+                    "shiny": "hawpocketshiny",
+                    "huebr": "hawpockethuebr"
+                  },
+                  "filters": ["shiny", "rose", "huebr"],
+                  "composed": false,
+                  "display_type": "image",
+                  "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+                  "label": "Pocket Haw"
+                },
+                {
+                  "slugs": {
+                    "rose": "sketchbooklarge-rose",
+                    "black": "sketchbooklarge-black",
+                    "shiny": "sketchbooklarge-shiny",
+                    "white": "sketchbooklarge-white"
+                  },
+                  "value": "sketchbook-sketchbooklarge",
+                  "filters": ["rose", "white", "shiny"],
+                  "composed": false,
+                  "display_type": "image",
+                  "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+                  "label": "Sketchbook Sketchbooklarge"
+                },
+                {
+                  "label": "3Haw",
+                  "filters": ["huebr"],
+                  "composed": true,
+                  "display_type": "image",
+                  "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+                  "components": [
                     {
-                      "value": "headphone-rosegold",
-                      "filters": [
-                        "skinwhite-iphone6plus",
-                        "tabletcase-ipadpro105"
-                      ],
-                      "composed": false,
-                      "customization": {
-                        "type": "text",
-                        "properties": {
-                          "max_length": 11,
-                          "pattern_name": "Whitespace, Letter, Digit",
-                          "pattern_regexp": "/[\\s[A-Za-z][0-9]]+/"
+                      "query_label": "Please select oneHaw",
+                      "items": [
+                        {
+                          "filters": ["huebr"],
+                          "label": "Haw 1",
+                          "slugs": {
+                            "huebr": "hawone-huebr"
+                          }
+                        },
+                        {
+                          "filters": ["huebr"],
+                          "label": "Haw 2",
+                          "slugs": {
+                            "huebr": "hawtwo-huebr"
+                          }
+                        },
+                        {
+                          "filters": ["huebr"],
+                          "label": "Haw 3",
+                          "slugs": {
+                            "huebr": "hawthree-huebr"
+                          }
                         }
-                      },
-                      "display_type": "color",
-                      "display_resources": [],
-                      "label": "iPhone"
+                      ]
                     }
                   ]
                 }
-              ],
-              "customization": {
-                "type": "pattern",
-                "properties": {
-                  "font": "(NEW) SUGAR PLUMS"
-                }
-              },
-              "display_type": "color",
-              "display_resources": [],
-              "label": "Samsung"
-            },
-            {
-              "value": "case-acquafascino",
-              "filters": ["wallslim"],
-              "composed": false,
-              "display_type": "color",
-              "display_resources": [],
-              "label": "Huawei"
+              ]
             }
           ]
+        },
+        {
+          "slugs": {
+            "huebr": "3hawpockethuebr"
+          },
+          "filters": ["huebr"],
+          "composed": false,
+          "display_type": "image",
+          "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+          "label": "Pocket Haw Haw Haw"
         }
       ]
+    },
+    {
+      "items": [
+        {
+          "items": [
+            {
+              "slugs": {
+                "13": "clutch-standard-13",
+                "15": "clutch-standard-15"
+              },
+              "value": "clutch-standard",
+              "filters": ["15", "13"],
+              "composed": false,
+              "display_type": "image",
+              "display_resource": "https://static-production.gocase.com.br/case_types/39/original/seletor-anti.jpg",
+              "label": "Clutch Standard"
+            }
+          ],
+          "query_label": "Please select a Category"
+        }
+      ],
+      "query_label": "Please select an Addon"
     }
   ],
   "customization": {
-    "type": "text",
+    "type": "pattern",
     "properties": {
-      "max_length": 11,
-      "pattern_name": "Whitespace, All accent letters",
-      "pattern_regexp": "/[\\s[:alpha:]]+/"
+      "font": "(NEW) SUGAR PLUMS",
+      "keys": {
+        "name-0": "value",
+        "name-1": "value"
+      }
     }
   }
 }

@@ -1,41 +1,50 @@
 <template>
   <div id="app" class="mt-2">
     <div>
-      <label>{{ devices.label }}</label>
+      <label>{{ devices.query_label }}</label>
     </div>
+    <!-- Device select -->
     <select v-model="selectedDevice" name="device">
-      <option value disabled></option>
-      <option
-        v-for="(opt, idx) in devices.identifiers"
-        :value="opt.value"
-        :key="idx"
-      >{{ opt.label }}</option>
+      <option value></option>
+      <option v-for="(opt, idx) in devices.filters" :value="opt.device" :key="idx">{{ opt.labels }}</option>
     </select>
     <hr>
-    <template v-if="hasCategories && selectedDevice">
+    <!-- Category select -->
+    <div
+      v-if="hasCategories && selectedDevice"
+      v-show="optionsForCategory(categories.items).length > 1"
+    >
+      <label>{{ categories.query_label }}</label>
       <g-select
-        :options="optionsForDevice"
-        option-label="label"
         name="category"
-        :display-mode="categories.display_type"
+        option-label="label"
+        :getOptionValue="getOptionValue()"
+        :options="optionsForCategory(categories.items)"
         :alwaysOpen="shouldAlwaysOpen"
         @input="updateCategories"
         @unselect="unselectCategory"
+        :value="optionsForCategory(categories.items).length == 1 ? optionsForCategory(categories.items)[0] : null"
       ></g-select>
-    </template>
-    <template v-for="(subSel, idx) in subSelects">
-      <div :key="idx">
-        <label>{{ subSel.query_label}}</label>
+    </div>
+    <!-- Subcategories selects -->
+    <template v-for="(subCateg, idx) in subCategories">
+      <div
+        :key="idx"
+        v-if="optionsForCategory(subCateg.items).length"
+        v-show="optionsForCategory(subCateg.items).length > 1"
+      >
+        <label>{{ subCateg.query_label}}</label>
         <g-select
-          ref="catSelect" 
-          :options="optionsForCategory(subSel)" 
+          ref="subCategories"
           option-label="label"
-          option-value="value"
-          :display-mode="subSel.display_type"
+          :options="optionsForCategory(subCateg.items)"
+          :getOptionValue="getOptionValue()"
           :alwaysOpen="true"
-          @input="updateCategories"
           @unselect="unselectCategory"
+          @input="updateCategories"
+          :value="optionsForCategory(subCateg.items).length == 1 ? optionsForCategory(subCateg.items)[0] : null"
         ></g-select>
+          <!-- @hook:beforeDestroy="unselectCategory" -->
       </div>
     </template>
   </div>
@@ -44,7 +53,7 @@
 /* eslint-disable */
 import VueSingleSelect from "./VueSingleSelect.vue";
 import GSelect from "./GSelect.vue";
-import product from "./product.json";
+import productMock from "./productV2.json";
 
 export default {
   name: "app",
@@ -56,15 +65,15 @@ export default {
     return {
       selectedDevice: null,
       selectedCategories: [],
-      product
+      product: productMock.product
     };
   },
   computed: {
     devices() {
-      return this.product.material[0];
+      return this.product[0];
     },
     categories() {
-      return this.product.material[1];
+      return this.product[1];
     },
     hasCategories() {
       return this.optionsForDevice.length > 0;
@@ -73,14 +82,21 @@ export default {
       return this.optionsForDevice.length <= 10;
     },
     optionsForDevice() {
-      if (!this.selectedDevice) return [];
-
-      return this.optionsForCategory(this.categories);
+      return this.optionsForCategory(this.categories.items);
     },
-    subSelects() {
+    subCategories() {
+      // This doesn't works with 3 levels nested components
+      // composed1 > composed2 > children
+      // When composed1 is removed/unselected the children of composed2 
+      // Remain in the UI. Must refactore this shit!
       return this.selectedCategories
         .filter(cat => cat.composed)
         .reduce((prev, curr) => prev.concat(curr.components), []);
+    },
+    lineItemsSlugs() {
+      return this.selectedCategories
+        .filter(cat => cat && !cat.composed)
+        .map(cat => cat.slugs[this.selectedDevice]);
     }
   },
   watch: {
@@ -94,29 +110,44 @@ export default {
     selectedCategories(curr, prev) {
       // Treat composed options
     },
-    subSelects(curr, prev) {
+    subCategories(curr, prev) {
       // console.log('prev subSelect:', prev)
       // console.log('curr subSelect:', curr)
     }
   },
   methods: {
-    optionsForCategory(category) {
-      return category.items.filter(cat =>
-        cat.identifiers.includes(this.selectedDevice)
+    optionsForCategory(options) {
+      return options.filter(option =>
+        option.filters.includes(this.selectedDevice)
       );
     },
     updateCategories(cat, prevCat) {
-      if (this.selectedCategories.includes(cat)) return
+      if (
+        cat === null ||
+        cat === undefined ||
+        this.selectedCategories.includes(cat)
+      ) {
+        return;
+      }
 
-      this.selectedCategories.push(cat)
-      console.log("Adding:", cat)
-      this.unselectCategory(prevCat)
+      this.selectedCategories.push(cat);
+      this.unselectCategory(prevCat);
+
+      console.log("Adding:", cat);
     },
     unselectCategory(category) {
       // Remove priview selected Category
-      this.selectedCategories = this.selectedCategories.filter((categ) => categ !== category)
-      console.log("Removing:", category)
-    }
+      this.selectedCategories = this.selectedCategories.filter(
+        categ => categ != category
+      );
+
+      console.log("Removing:", category);
+    },
+    getOptionValue() {
+      const device = this.selectedDevice;
+
+      return option => option && option.slugs && option.slugs[device];
+    },
   }
 };
 </script>

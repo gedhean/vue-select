@@ -1,0 +1,396 @@
+{
+  "products": [
+    {
+      "product": [
+        {
+          "filters": [
+            {
+              "device": "white",
+              "labels": "White - EN"
+            }
+          ],
+          "query_label": "Please select a Device"
+        },
+        {
+          "items": [
+            {
+              "value": "sketchbook-sketchbooklarge",
+              "filters": ["lilac"],
+              "composed": true,
+              "components": [
+                {
+                  "items": [
+                    {
+                      "slugs": {
+                        "rose": "sketchbooklarge-rose",
+                        "black": "sketchbooklarge-black",
+                        "lilac": "sketchbooklarge-lilac",
+                        "white": "sketchbooklarge-white"
+                      },
+                      "value": "sketchbook-sketchbooklarge",
+                      "filters": ["white", "lilac"],
+                      "composed": false,
+                      "display_type": "image",
+                      "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+                      "label": "Sketchbook Sketchbooklarge"
+                    }
+                  ],
+                  "query_label": "Please select a Category"
+                }
+              ],
+              "display_type": "image",
+              "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+              "label": "Sketchbook Sketchbooklarge"
+            }
+          ],
+          "query_label": "Please select a Category"
+        },
+        {
+          "items": [
+            {
+              "items": [
+                {
+                  "value": "waistbag-default",
+                  "filters": ["standard"],
+                  "composed": true,
+                  "components": [
+                    {
+                      "items": [
+                        {
+                          "slugs": {
+                            "standard": "waistbag-default-standard"
+                          },
+                          "value": "waistbag-default",
+                          "filters": ["standard"],
+                          "composed": false,
+                          "customization": {
+                            "type": "pattern",
+                            "properties": {
+                              "font": "Brain Flower Euro",
+                              "keys": {
+                                "name-0": "value",
+                                "name-1": "value"
+                              }
+                            }
+                          },
+                          "display_type": "image",
+                          "display_resource": "https://static-production.gocase.com.br/case_types/20/original/deluxe_matte.jpg",
+                          "label": "Waistbag Default"
+                        }
+                      ],
+                      "query_label": "Please select a Category"
+                    }
+                  ],
+                  "customization": {
+                    "type": "pattern",
+                    "properties": {
+                      "font": "Brain Flower Euro",
+                      "keys": {
+                        "name-0": "value",
+                        "name-1": "value"
+                      }
+                    }
+                  },
+                  "display_type": "image",
+                  "display_resource": "https://static-production.gocase.com.br/case_types/20/original/deluxe_matte.jpg",
+                  "label": "Waistbag Default"
+                }
+              ],
+              "query_label": "Please select a Category"
+            }
+          ],
+          "query_label": "Please select an Addon"
+        }
+      ],
+      "customization": {
+        "type": "pattern",
+        "properties": {
+          "font": "(NEW) SUGAR PLUMS",
+          "keys": {
+            "name-0": "value",
+            "name-1": "value",
+            "name-2": "value"
+          }
+        }
+      }
+    },
+    {
+      "product": [
+        {
+          "filters": [
+            {
+              "device": "white",
+              "labels": "White - EN"
+            },
+            {
+              "device": "black",
+              "labels": "Black - EN"
+            }
+          ],
+          "query_label": "Please select a Device"
+        },
+        {
+          "items": [
+            {
+              "value": "transfercable-lighting",
+              "filters": ["black"],
+              "composed": true,
+              "components": [
+                {
+                  "items": [
+                    {
+                      "slugs": {
+                        "black": "black-lightning",
+                        "white": "white-lightning"
+                      },
+                      "value": "transfercable-lighting",
+                      "filters": ["white"],
+                      "composed": false,
+                      "display_type": "image",
+                      "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+                      "label": "Transfercable Lighting"
+                    }
+                  ],
+                  "query_label": "Please select a Category"
+                }
+              ],
+              "display_type": "image",
+              "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+              "label": "Transfercable Lighting"
+            }
+          ],
+          "query_label": "Please select a Category"
+        },
+        {
+          "items": [
+            {
+              "items": [
+                {
+                  "value": "case-deluxe",
+                  "filters": [
+                    "iphone6",
+                    "iphone6plus",
+                    "iphone7plus",
+                    "iphone7",
+                    "iphonex",
+                    "iphonexsmax",
+                    "iphone8",
+                    "iphone8plus"
+                  ],
+                  "composed": true,
+                  "components": [
+                    {
+                      "items": [
+                        {
+                          "slugs": {
+                            "iphone6": "deluxe-iphone6",
+                            "iphone7": "deluxe-iphone7",
+                            "iphone8": "deluxe-iphone8",
+                            "iphonex": "deluxe-iphonex",
+                            "iphonexr": "deluxe-iphonexr",
+                            "iphone6plus": "deluxe-iphone6plus",
+                            "iphone7plus": "deluxe-iphone7plus",
+                            "iphone8plus": "deluxe-iphone8plus",
+                            "iphonexsmax": "deluxe-iphonexsmax"
+                          },
+                          "value": "case-deluxe",
+                          "filters": [
+                            "iphonexsmax",
+                            "iphone8plus",
+                            "iphonex",
+                            "iphone6plus",
+                            "iphone6"
+                          ],
+                          "composed": false,
+                          "display_type": "image",
+                          "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+                          "label": "Case Deluxe"
+                        }
+                      ],
+                      "query_label": "Please select a Category"
+                    }
+                  ],
+                  "customization": {
+                    "type": "pattern",
+                    "properties": {
+                      "font": "Sassy Molassy (con acentos)",
+                      "keys": {
+                        "name-0": "value"
+                      }
+                    }
+                  },
+                  "display_type": "image",
+                  "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+                  "label": "Case Deluxe"
+                }
+              ],
+              "query_label": "Please select a Category"
+            }
+          ],
+          "query_label": "Please select an Addon"
+        }
+      ],
+      "customization": {
+        "type": "text",
+        "properties": {
+          "keys": {
+            "name-0": "value",
+            "name-1": "value",
+            "name-2": "value"
+          },
+          "max_length": 12,
+          "pattern_name": "Digit",
+          "pattern_regexp": "/]+/"
+        }
+      }
+    },
+    {
+      "product": [
+        {
+          "filters": [
+            {
+              "device": "standard",
+              "labels": "Standard - EN"
+            }
+          ],
+          "query_label": "Please select a Device"
+        },
+        {
+          "items": [
+            {
+              "slugs": {
+                "standard": "waistbag-default-standard"
+              },
+              "value": "waistbag-default",
+              "filters": ["standard"],
+              "composed": false,
+              "display_type": "image",
+              "display_resource": "https://static-production.gocase.com.br/case_types/20/original/deluxe_matte.jpg",
+              "label": "Waistbag Default"
+            }
+          ],
+          "query_label": "Please select a Category"
+        },
+        {
+          "items": [
+            {
+              "items": [
+                {
+                  "slugs": {
+                    "standard": "waistbag-default-standard"
+                  },
+                  "value": "waistbag-default",
+                  "filters": ["standard"],
+                  "composed": false,
+                  "display_type": "image",
+                  "display_resource": "https://static-production.gocase.com.br/case_types/20/original/deluxe_matte.jpg",
+                  "label": "Waistbag Default"
+                }
+              ],
+              "query_label": "Please select a Category"
+            }
+          ],
+          "query_label": "Please select an Addon"
+        }
+      ],
+      "customization": {
+        "type": "pattern",
+        "properties": {
+          "font": "Brain Flower Euro",
+          "keys": {
+            "name-0": "value",
+            "name-1": "value",
+            "name-2": "value"
+          }
+        }
+      }
+    },
+    {
+      "product": [
+        {
+          "filters": [
+            {
+              "device": "standard",
+              "labels": "Standard - EN"
+            },
+            {
+              "device": "shiny",
+              "labels": "Shiny - EN"
+            },
+            {
+              "device": "black",
+              "labels": "Black - EN"
+            }
+          ],
+          "query_label": "Please select a Device"
+        },
+        {
+          "items": [
+            {
+              "value": "pocket-default",
+              "filters": ["shiny", "black", "rose", "standard"],
+              "composed": true,
+              "components": [
+                {
+                  "items": [
+                    {
+                      "slugs": {
+                        "rose": "pocketrose",
+                        "black": "pocketblack",
+                        "shiny": "pocketshiny",
+                        "standard": "pocketstandard"
+                      },
+                      "value": "pocket-default",
+                      "filters": ["shiny", "rose", "standard"],
+                      "composed": false,
+                      "display_type": "image",
+                      "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+                      "label": "Pocket Default"
+                    }
+                  ],
+                  "query_label": "Please select a Category"
+                }
+              ],
+              "display_type": "image",
+              "display_resource": "https://static-production.gocase.com.br/case_types/1/original/standard.jpg",
+              "label": "Pocket Default"
+            }
+          ],
+          "query_label": "Please select a Category"
+        },
+        {
+          "items": [
+            {
+              "items": [
+                {
+                  "slugs": {
+                    "13": "clutch-standard-13",
+                    "15": "clutch-standard-15"
+                  },
+                  "value": "clutch-standard",
+                  "filters": ["15", "13"],
+                  "composed": false,
+                  "display_type": "image",
+                  "display_resource": "https://static-production.gocase.com.br/case_types/39/original/seletor-anti.jpg",
+                  "label": "Clutch Standard"
+                }
+              ],
+              "query_label": "Please select a Category"
+            }
+          ],
+          "query_label": "Please select an Addon"
+        }
+      ],
+      "customization": {
+        "type": "pattern",
+        "properties": {
+          "font": "(NEW) SUGAR PLUMS",
+          "keys": {
+            "name-0": "value",
+            "name-1": "value"
+          }
+        }
+      }
+    }
+  ]
+}
