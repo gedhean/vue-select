@@ -103,9 +103,10 @@ export default {
     selectedDevice(curr, prev) {
       // if (this.optionsForDevice.includes(this.selectedCategories)) return;
 
-      this.selectedCategories = this.selectedCategories.filter(cat =>
+      /* this.selectedCategories = this.selectedCategories.filter(cat =>
         this.optionsForDevice.includes(cat)
-      );
+      ); */
+      this.selectedCategories = []
     },
     selectedCategories(curr, prev) {
       // Treat composed options
