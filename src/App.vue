@@ -44,7 +44,30 @@
           @input="updateCategories"
           :value="optionsForCategory(subCateg.items).length == 1 ? optionsForCategory(subCateg.items)[0] : null"
         ></g-select>
-          <!-- @hook:beforeDestroy="unselectCategory" -->
+        <!-- @hook:beforeDestroy="unselectCategory" -->
+      </div>
+    </template>
+    <!-- Addons -->
+    <hr>
+    <template v-if="addons.items.length">
+      <label>{{ addons.query_label }}</label>
+      <div v-for="(addon, idx) in addons.items" :key="idx">
+        <label>{{ addon.query_label }}</label>
+        <g-select 
+          :options="addon.items"
+          :alwaysOpen="true"
+          @unselect="unselectAddons"
+          @input="updateAddons"
+        />
+      </div>
+    </template>
+    <hr>
+    <template v-if="customization">
+      <label>Customizations</label>
+      <!-- needd a label -->
+      <div v-for="(value, key) in customization.properties.keys" :key="key">
+        <label>{{key}}</label>
+        <input v-model="customizations[key]" :type="customization.type" :pattern="customization.properties.regexp" :maxlength="customization.properties.maxlength">
       </div>
     </template>
   </div>
@@ -65,6 +88,8 @@ export default {
     return {
       selectedDevice: null,
       selectedCategories: [],
+      selectedAddons: [],
+      customizations: {},
       product: productMock.product
     };
   },
@@ -87,7 +112,7 @@ export default {
     subCategories() {
       // This doesn't works with 3 levels nested components
       // composed1 > composed2 > children
-      // When composed1 is removed/unselected the children of composed2 
+      // When composed1 is removed/unselected the children of composed2
       // Remain in the UI. Must refactore this shit!
       return this.selectedCategories
         .filter(cat => cat.composed)
@@ -97,6 +122,12 @@ export default {
       return this.selectedCategories
         .filter(cat => cat && !cat.composed)
         .map(cat => cat.slugs[this.selectedDevice]);
+    },
+    addons() {
+      return this.product[2]
+    },
+    customization() {
+      return productMock.customization
     }
   },
   watch: {
@@ -106,10 +137,22 @@ export default {
       /* this.selectedCategories = this.selectedCategories.filter(cat =>
         this.optionsForDevice.includes(cat)
       ); */
-      this.selectedCategories = []
+      this.selectedCategories = [];
     },
     selectedCategories(curr, prev) {
       // Treat composed options
+      // let diff = prev.filter(el => !curr.includes(el));
+      // console.log("diff: ", diff);
+
+      // if (diff.length) {
+      //   diff.forEach(el => {
+      //     if (el.composed) {
+      //       el.components.forEach(child => {
+      //         this.selectedCategories = this.selectedCategories.filter(cat => cat != child);
+      //       });
+      //     }
+      //   });
+      // }
     },
     subCategories(curr, prev) {
       // console.log('prev subSelect:', prev)
@@ -134,7 +177,7 @@ export default {
       this.selectedCategories.push(cat);
       this.unselectCategory(prevCat);
 
-      console.log("Adding:", cat);
+      // console.log("Adding:", cat);
     },
     unselectCategory(category) {
       // Remove priview selected Category
@@ -142,13 +185,28 @@ export default {
         categ => categ != category
       );
 
-      console.log("Removing:", category);
+      // console.log("Removing:", category);
+    },
+    updateAddons(addon, prevAddon) {
+      if (
+        addon === null ||
+        addon === undefined ||
+        this.selectedAddons.includes(addon)
+      ) {
+        return;
+      }
+
+      this.selectedAddons.push(addon);
+      this.unselectAddon(prevAddon);
+    },
+    unselectAddons(addon) {
+      this.selectedAddons = this.selectedAddons.filter(add => add != addon)
     },
     getOptionValue() {
       const device = this.selectedDevice;
 
       return option => option && option.slugs && option.slugs[device];
-    },
+    }
   }
 };
 </script>

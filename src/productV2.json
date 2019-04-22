@@ -37,7 +37,7 @@
           "composed": true,
           "components": [
             {
-              "query_label": "Please select a Category",
+              "query_label": "Please select a Category 2",
               "items": [
                 {
                   "slugs": {
@@ -131,8 +131,10 @@
       ]
     },
     {
+      "query_label": "Please select an Addon",
       "items": [
         {
+          "query_label": "Please select a addon Category",
           "items": [
             {
               "slugs": {
@@ -146,20 +148,19 @@
               "display_resource": "https://static-production.gocase.com.br/case_types/39/original/seletor-anti.jpg",
               "label": "Clutch Standard"
             }
-          ],
-          "query_label": "Please select a Category"
+          ]
         }
-      ],
-      "query_label": "Please select an Addon"
+      ]
     }
   ],
   "customization": {
-    "type": "pattern",
+    "type": "text",
     "properties": {
-      "font": "(NEW) SUGAR PLUMS",
+      "maxlength": 11,
+      "regexp": "[a-zA-Z]",
       "keys": {
-        "name-0": "value",
-        "name-1": "value"
+        "name-0": "value1",
+        "name-1": "value2"
       }
     }
   }

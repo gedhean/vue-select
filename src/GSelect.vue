@@ -66,7 +66,7 @@ export default {
     optionLabel: {
       type: String,
       required: false,
-      default: () => null
+      default: () => 'label'
     },
     optionKey: {
       type: String,
@@ -131,6 +131,7 @@ export default {
 
     if (this.value && this.options.includes(this.value)) {
       this.selectedOption = this.value
+      // this.$emit("input", this.value, null);
     }
   },
   beforeDestroy() {
